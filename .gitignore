@@ -1,2 +1,6 @@
 # Python conpiled file
 *.pyc
+
+# Unrelated folder
+/.idea
+.idea/
