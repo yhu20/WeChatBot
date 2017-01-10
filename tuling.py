@@ -1,5 +1,4 @@
 #coding=utf8
-import sys, os
 import requests, json
 
 try:
@@ -36,13 +35,3 @@ def get_response(msg, storageClass = None, userName = None, userid = 'ItChat'):
         return '\n'.join([r['text'].replace('<br>','\n')])
     elif r['code'] == 314000: # 诗词类
         return '\n'.join([r['text'].replace('<br>','\n')])
-
-if __name__ == '__main__':
-    try:
-        ipt = raw_input
-        ipt = lambda: raw_input('>').decode(sys.stdin.encoding)
-    except:
-        ipt = lambda: input('>')
-    while True:
-        a = ipt()
-        print(get_response(a, 'ItChat'))

@@ -1,13 +1,12 @@
-import os, time, re, io
+import time, re, io
 import json, copy
-import traceback, logging
-
-import requests
+import logging
 
 from .. import config, utils
 from ..returnvalues import ReturnValue
 
 logger = logging.getLogger('itchat')
+
 
 def load_contact(core):
     core.update_chatroom             = update_chatroom
@@ -24,6 +23,7 @@ def load_contact(core):
     core.set_chatroom_name           = set_chatroom_name
     core.delete_member_from_chatroom = delete_member_from_chatroom
     core.add_member_into_chatroom    = add_member_into_chatroom
+
 
 def update_chatroom(self, userName, detailedMember=False):
     if not isinstance(userName, list):
@@ -50,7 +50,7 @@ def update_chatroom(self, userName, detailedMember=False):
         def get_detailed_member_info(encryChatroomId, memberList):
             url = '%s/webwxbatchgetcontact?type=ex&r=%s' % (
                 self.loginInfo['url'], int(time.time()))
-            headers = {
+            header = {
                 'ContentType': 'application/json; charset=UTF-8',
                 'User-Agent' : config.USER_AGENT, }
             data = {
@@ -60,8 +60,8 @@ def update_chatroom(self, userName, detailedMember=False):
                     'UserName': member['UserName'],
                     'EncryChatRoomId': encryChatroomId} \
                         for member in memberList], }
-            return json.loads(self.s.post(url, data=json.dumps(data), headers=headers
-                    ).content.decode('utf8', 'replace'))['ContactList']
+            return json.loads(self.s.post(url, data=json.dumps(data), headers=header).content.
+                              decode('utf8', 'replace'))['ContactList']
         MAX_GET_NUMBER = 50
         for chatroom in chatroomList:
             totalMemberList = []
