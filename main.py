@@ -14,6 +14,7 @@ def text_reply(msg):
         return u'我主人超级帅的！'
     elif u'源代码' in msg['Text'] or u'获取文件' in msg['Text']:
         itchat.send('@fil@main.py', msg['FromUserName'])
+        itchat.send('Project: https://github.com/yhu20/WeChatBot/tree/master')
         return u'这就是现在机器人后台的代码，是不是很简单呢？'
     elif u'获取图片' in msg['Text'] or u'自拍' in msg['Text']:
         itchat.send('@img@irobot.jpg', msg['FromUserName']) # there should be a picture
