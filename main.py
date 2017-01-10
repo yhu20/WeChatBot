@@ -42,8 +42,9 @@ def mm_reply(msg):
 @itchat.msg_register('Text', isGroupChat = True)
 def group_reply(msg):
     if msg['isAt']:
+        text = msg['Text'].split(' ')[1].strip()
         return u'@%s\u2005%s' % (msg['ActualNickName'],
-            get_response(msg['Text']) or u'收到：' + msg['Text'])
+            get_response(text) or u'收到：' + msg['Text'])
 
 
 @itchat.msg_register('Friends')
