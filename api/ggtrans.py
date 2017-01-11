@@ -34,8 +34,6 @@ def translate2(msg, targetl='zh'):
     return translation
 
 
-
-
 if __name__ == '__main__':
 
     print(translate2(u'翻译 what is this? Can you understand me?', u'中文'))

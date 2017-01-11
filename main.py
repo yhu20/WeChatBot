@@ -27,6 +27,13 @@ def text_reply(msg):
         from api import ggtrans
 
         return ggtrans.translate2(text)
+    elif msg['Text'][:5].lower() in ('wiki:', 'wiki：'):
+        raw_text = re.split(':|：', msg['Text'], 1)
+        from api import wiki
+
+        result = wiki.wiki(raw_text[-1])
+        # itchat.send('url: {}'.format(result['url']))
+        return result['url']
     else:
         return get_response(msg['Text']) or u'收到：' + msg['Text']
 
@@ -69,6 +76,13 @@ def group_reply(msg):
             text = raw_text[-1]
             from api import ggtrans
             return ggtrans.translate2(text)
+        elif msg['Text'][:5].lower() in ('wiki:', 'wiki：'):
+            raw_text = re.split(':|：', msg['Text'], 1)
+            from api import wiki
+
+            result = wiki.wiki(raw_text[-1])
+            # itchat.send('url: {}'.format(result['url']))
+            return result['url']
         else:
             return u'@%s\u2005%s' % (msg['ActualNickName'],
                 get_response(text) or u'收到：' + msg['Text'])

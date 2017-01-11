@@ -86,8 +86,7 @@ def print_qr(fileDir):
 
 try:
     from PIL import Image
-    def print_cmd_qr(fileDir, size = 20, padding = 3,
-            white = BLOCK, black = '  ', enableCmdQR = True):
+    def print_cmd_qr(fileDir, size = 20, padding = 3, white = BLOCK, black = '  ', enableCmdQR = True):
         img     = Image.open(fileDir)
         times   = img.size[0] / (size + padding * 2)
         rgb     = img.convert('RGB')
@@ -119,7 +118,7 @@ try:
 
 
 except ImportError:
-    def print_cmd_qr(fileDir):
+    def print_cmd_qr(fileDir, enableCmdQR = True):
         print('pillow should be installed to use command line QRCode: pip install pillow')
         print_qr(fileDir)
 
