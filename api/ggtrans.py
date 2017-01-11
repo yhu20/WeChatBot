@@ -18,16 +18,18 @@ def translate2(msg, targetl='zh'):
     :return: message in another language.
     """
     sourcel = detect(msg)
-    if detect(targetl) in ('zh', 'zh-TW', 'zh-cn'):
+    # print(sourcel)
+    if detect(targetl) in ('zh', 'zh-TW', 'zh-cn') or targetl in ('zh', 'zh-TW', 'zh-cn'):
         try:
-            targetl_ = ch_language_code[targetl] if targetl != sourcel else 'zh-TW'
+            targetl_ = ch_language_code[targetl] if targetl in ch_language_code.keys() else targetl
+            # print(targetl)
         except:
             return 'No this language available!'
     else:
-        # print(detect(targetl))  #DEBUG
+        print(detect(targetl))  #DEBUG
         targetl_ = targetl if targetl != sourcel else 'zh-TW'
 
-    translator = Translator(to_lang=targetl_)
+    translator = Translator(to_lang=targetl_, from_lang=sourcel)
     translation = translator.translate(msg)
     return translation
 

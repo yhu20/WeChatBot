@@ -18,10 +18,10 @@ def text_reply(msg):
         return u'这就是现在机器人后台的代码，是不是很简单呢？'
     elif u'获取图片' in msg['Text'] or u'自拍' in msg['Text']:
         itchat.send('@img@irobot.jpg', msg['FromUserName']) # there should be a picture
-    elif u'翻译' or u'translate' in msg['Text']:
+    elif u'翻译' in msg['Text'] or u'translate' in msg['Text']:
         # print(msg['Text'])
         raw_text = re.split(':|：', msg['Text'], 1)
-        targetl = raw_text[0]
+        # targetlan = raw_text[0]
         text = raw_text[-1]
 
         from api import ggtrans
@@ -62,7 +62,7 @@ def group_reply(msg):
         elif u'获取图片' in text or u'自拍' in text:
             itchat.send('@img@irobot.jpg', msg['FromUserName'])  # there should be a picture
             return u'这就是帅气的我！'
-        elif u'翻译' or u'translate' in msg['Text']:
+        elif u'翻译' in msg['Text'] or u'translate' in msg['Text']:
             # print(msg['Text'])
             raw_text = re.split(':|：', msg['Text'], 1)
             targetl = raw_text[0]
