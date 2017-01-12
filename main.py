@@ -76,7 +76,7 @@ def group_reply(msg):
             text = raw_text[-1]
             from api import ggtrans
             return ggtrans.translate2(text)
-        elif msg['Text'][:5].lower() in ('wiki:', 'wiki：'):
+        elif 'wiki:' in text.lower() or 'wiki：' in text.lower():
             raw_text = re.split(':|：', msg['Text'], 1)
             from api import wiki
 
